@@ -1,5 +1,7 @@
 // library import
 import { useMemo } from "react"
+
+// crud import
 import { getPeople } from "../../crud/people.crud"
 
 // component imports
@@ -13,7 +15,7 @@ const PeopleTablePaginate = () => {
   const {peopleStore, setPeople} = usePeopleStore((state: usePeoplesStoreState) => state)
 
   const nextPage = useMemo(() => {
-    return peopleStore.next  && peopleStore.next?.charAt(peopleStore.next.length - 1)
+    return peopleStore.next && peopleStore.next?.charAt(peopleStore.next.length - 1)
   }, [peopleStore])
 
   const previousPage = useMemo(() => {

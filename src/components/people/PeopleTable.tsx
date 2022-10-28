@@ -18,9 +18,7 @@ const PeopleTable = () => {
             </AccordionTab>
           ))
         }
-          
       </Accordion>
-
     </div>
   )
 }

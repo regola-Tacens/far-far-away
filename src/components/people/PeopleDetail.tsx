@@ -25,7 +25,12 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
       <div><span>Weight:</span> {people.mass} Kg</div>
       <div>
         <span>Homeworld:</span> {people.homeworld}
-        <span className="peopledetail__filterbtn" onClick={handleSearchByHomeworld}><Chip label='filter' className="mr-1 mb-1 custom-chip" /></span>
+        <span 
+          className="peopledetail__filterbtn" 
+          onClick={handleSearchByHomeworld}
+        >
+          <Chip label='filter' className="mr-1 mb-1 custom-chip" />
+        </span>
       </div>
       <h3>Films</h3>
       <ul>

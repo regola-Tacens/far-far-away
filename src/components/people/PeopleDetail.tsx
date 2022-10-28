@@ -7,6 +7,7 @@ import { Chip } from "primereact/chip"
 
 // crud import
 import { getOnePeopleById, getPeopleByPlanet } from "../../crud/people.crud"
+import { SearchByHomeworld } from "../../crud/actions/peopleActions"
 
 type PeopleDetailType = {
   people: PeopleType
@@ -15,16 +16,12 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
   const {setPeopleByPlanet} = usePeopleStore((state: usePeoplesStoreState) => state)
 
   const handleSearchByHomeworld = async() => {
-    const planet = people.homeworld?.match(/\d+/g)
-    const peopleByPlanet = await getPeopleByPlanet(planet)
-    let persons: PeopleType[]  = []
-
-    for (let resident of peopleByPlanet.residents) {
-      const id = resident.match(/\d+/g)[0]
-      const newResident = await getOnePeopleById(id)
-      persons.push(newResident)
+    try {
+      const persons = await SearchByHomeworld(people.homeworld)
+      setPeopleByPlanet(persons)
+    } catch (err) {
+      console.error(err)
     }
-    setPeopleByPlanet(persons)
   }
 
   return(

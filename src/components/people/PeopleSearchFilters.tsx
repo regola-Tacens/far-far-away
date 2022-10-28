@@ -13,7 +13,7 @@ const PeopleSearchFilters = () => {
 
   return (
     <div className="reset__filters" onClick={handleResetPeople}>
-      <Chip label={filterName} className="p-mb-2" removable />
+      <Chip label={`Living on planet ${filterName}`} className="p-mb-2" removable />
     </div>
   )
 }

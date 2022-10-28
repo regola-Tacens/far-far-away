@@ -15,7 +15,7 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
   const {setPeopleByPlanet} = usePeopleStore((state: usePeoplesStoreState) => state)
 
   const handleSearchByHomeworld = async() => {
-    const planet = people.homeworld?.match(/\d+/g)[0]
+    const planet = people.homeworld?.match(/\d+/g)
     const peopleByPlanet = await getPeopleByPlanet(planet)
     let persons: PeopleType[]  = []
 

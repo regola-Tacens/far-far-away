@@ -33,7 +33,7 @@ export async function getOnePeopleById(id: number) {
   }
 }
 
-export async function getPeopleByPlanet(planet: string) {
+export async function getPeopleByPlanet(planet: string[] | null) {
   try {
     const response = await peopleApi.get(`/planets/${planet}`)
     return Promise.resolve(response.data)

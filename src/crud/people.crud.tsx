@@ -2,7 +2,7 @@
 import { swapiAPI } from './axios'
 import axios from 'axios'
 
-let peopleApi = axios.create({
+export const peopleApi = axios.create({
   baseURL: 'https://swapi.dev/api/'
 })
 

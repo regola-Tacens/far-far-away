@@ -1,3 +1,6 @@
+// library imports
+import { useCallback, useEffect, useState } from "react"
+
 // type imports
 import { PeopleType } from "../../types/peopleType"
 
@@ -8,24 +11,33 @@ import { usePeoplesStoreState, usePeopleStore } from "../../store/peopleStore"
 import { Chip } from "primereact/chip"
 
 // helpers & state imports
-import { SearchByHomeworld } from "../../crud/actions/peopleActions"
 import useFetch from "../../hooks/useFetch"
+import { SWConstants } from "../../constants/peopleConstants"
 
 // crud import
-import { SWConstants } from "../../constants/peopleConstants"
+import { SearchByHomeworld } from "../../crud/actions/peopleActions"
 import { fetchPlanetById } from "../../crud/planet.crud"
+import { fetchFilmById } from "../../crud/film.crud"
 
 type PeopleDetailType = {
   people: PeopleType
 }
+
+type Film = {
+  title: string,
+  url: string
+}
+
 const PeopleDetail = ({people}: PeopleDetailType) => {
+  const [films, setFilms] = useState<Film[]>([])
   const {setPeopleByPlanet, setFilterName} = usePeopleStore((state: usePeoplesStoreState) => state)
+  
   const {data: planetData, error: planetError, status: planetStatus } = useFetch({
     queryRepo: SWConstants.PLANETS,
     apiCall: fetchPlanetById(people.homeworld),
   });
-  
-  const handleSearchByHomeworld = async() => {
+ 
+  const handleSearchByHomeworld = useCallback(async() => {
     try {
       const persons = await SearchByHomeworld(people.homeworld)
       setPeopleByPlanet(persons)
@@ -34,7 +46,23 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
     } catch (err) {
       console.error(err)
     }
-  }
+  }, [])
+
+  useEffect(() => {
+    const getFilms = async() => {
+      try {
+        let films: Film[] = []
+        for(let film of people.films) {
+          const result: Film = await fetchFilmById(film)
+          films.push({title: result.title, url: result.url})
+        }
+        setFilms(films)
+      } catch (err) {
+        console.error(err)
+      }
+    }
+    getFilms()
+  }, [])
 
   return(
     <div className="peopledetail">
@@ -57,9 +85,9 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
       <h3>Films</h3>
       <ul>
         {
-          people.films && people.films.map((film) => (
-            <li key={film}>
-              <a href={`${film}`} target="blank">{film}</a>
+          films && films.map((film) => (
+            <li key={film.title}>
+              <a href={`${film.url}`} target="blank">{film.title}</a>
             </li>
           ))
         }

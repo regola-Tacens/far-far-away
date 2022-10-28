@@ -1,5 +1,7 @@
 // library imports
 import { Accordion, AccordionTab } from 'primereact/accordion';
+
+// helpers & store imports
 import { usePeoplesStoreState, usePeopleStore } from '../../store/peopleStore';
 
 // component imports
@@ -13,7 +15,7 @@ const PeopleTable = () => {
        <Accordion activeIndex={activeIndex} className="people__accordion">
         { 
           peopleStore?.results?.map(people => (
-            <AccordionTab header={people.name} key={people.name}>
+            <AccordionTab header={<h3>{people.name}</h3>} key={people.name}>
               <PeopleDetail people={people}/>
             </AccordionTab>
           ))

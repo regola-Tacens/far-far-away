@@ -11,7 +11,7 @@ type SpinnerProps = {
 const Spinner = ({loading}: SpinnerProps) => {
   return (
     <div className='spinner'>
-      {loading ==='loading' && <ProgressSpinner style={{width: '45px'}} strokeWidth='5px' />}
+      {loading ==='loading' && <ProgressSpinner style={{width: '40px'}} strokeWidth='5px' />}
     </div>
   )
 }

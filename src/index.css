@@ -7,10 +7,14 @@
   margin-top: 2rem;
 }
 .starwars__container {
-  margin-top: 4rem;
+  margin-top: 1rem;
 }
 .people__accordion {
   width: 800px;
+}
+.peopledetail {
+  display: flex;
+  justify-content: space-between;
 }
 .peopledetail span {
   font-weight: bold;
@@ -24,9 +28,31 @@
   cursor: pointer;
   margin: 0 10px;
 }
+.poepledetail__films {
+  position: relative;
+  min-width: 250px;
+}
+.poepledetail__films__badge {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
 .reset__filters {
   margin: 1rem 0;
   cursor: pointer;
   position: absolute;
   top: 2rem;
+}
+.spinner {
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+}
+.flex {
+  display: flex;
+  align-items: center;
+}
+.p-chip.custom-chip {
+  background: var(--primary-color);
+  color: var(--primary-color-text);
 }

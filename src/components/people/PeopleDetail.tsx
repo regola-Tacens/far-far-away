@@ -1,5 +1,5 @@
 // library imports
-import { useCallback, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 // type imports
 import { PeopleType } from "../../types/peopleType"
@@ -37,7 +37,7 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
     apiCall: fetchPlanetById(people.homeworld),
   });
  
-  const handleSearchByHomeworld = useCallback(async() => {
+  const handleSearchByHomeworld = async() => {
     try {
       const persons = await SearchByHomeworld(people.homeworld)
       setPeopleByPlanet(persons)
@@ -46,7 +46,7 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
     } catch (err) {
       console.error(err)
     }
-  }, [])
+  }
 
   useEffect(() => {
     const getFilms = async() => {

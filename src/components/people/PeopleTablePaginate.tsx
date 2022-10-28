@@ -12,7 +12,7 @@ import { Chip } from 'primereact/chip';
 import { usePeoplesStoreState, usePeopleStore } from "../../store/peopleStore"
 
 const PeopleTablePaginate = () => {
-  const {peopleStore, setPeople} = usePeopleStore((state: usePeoplesStoreState) => state)
+  const {peopleStore, setPeople, setResetFilterButton} = usePeopleStore((state: usePeoplesStoreState) => state)
 
   const nextPage = useMemo(() => {
     return peopleStore.next && peopleStore.next?.charAt(peopleStore.next.length - 1)
@@ -39,6 +39,7 @@ const PeopleTablePaginate = () => {
       if (pageDirection[direction] !== null ){
         const peopleUpdated =  await getPeople(Number(pageDirection[direction]))
         setPeople(peopleUpdated)
+        setResetFilterButton()
       }
     } catch (err) {
       console.error(err)

@@ -6,8 +6,11 @@
   align-items: center;
   margin-top: 2rem;
 }
+.starwars__container {
+  margin-top: 4rem;
+}
 .people__accordion {
-  width: 500px;
+  width: 800px;
 }
 .peopledetail span {
   font-weight: bold;
@@ -24,4 +27,6 @@
 .reset__filters {
   margin: 1rem 0;
   cursor: pointer;
+  position: absolute;
+  top: 2rem;
 }

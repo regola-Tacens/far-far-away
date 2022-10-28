@@ -6,11 +6,11 @@ import { usePeoplesStoreState, usePeopleStore } from '../../store/peopleStore';
 import PeopleDetail from './PeopleDetail';
 
 const PeopleTable = () => {
-  const {peopleStore} = usePeopleStore((state: usePeoplesStoreState) => state)
+  const {peopleStore, activeIndex} = usePeopleStore((state: usePeoplesStoreState) => state)
 
   return (
     <div>
-       <Accordion activeIndex={-1} className="people__accordion">
+       <Accordion activeIndex={activeIndex} className="people__accordion">
         { 
           peopleStore?.results?.map(people => (
             <AccordionTab header={people.name} key={people.name}>

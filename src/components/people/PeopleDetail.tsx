@@ -30,6 +30,7 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
       const persons = await SearchByHomeworld(people.homeworld)
       setPeopleByPlanet(persons)
       setFilterName(planetData.name)
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (err) {
       console.error(err)
     }

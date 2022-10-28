@@ -31,7 +31,7 @@ const StarWarsPeople = () => {
   }, [peopleStatus])
 
 return (
-  <div>
+  <div className="starwars__container">
     <nav className="navigation">
       <PeopleSearchFilters />
       <PeopleTablePaginate />

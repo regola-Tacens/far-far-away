@@ -12,7 +12,6 @@ function App() {
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </div>
-    
   )
 }
 

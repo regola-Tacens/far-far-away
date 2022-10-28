@@ -1,5 +1,5 @@
 import create from 'zustand'
-import { StarWarsApiResponseType } from '../types/peopleType'
+import { PeopleType, StarWarsApiResponseType } from '../types/peopleType'
 
 const initialPeopleState = {
   count: 0,
@@ -15,7 +15,8 @@ export type usePeoplesStoreState = {
   setInitialPeople: (people: StarWarsApiResponseType) => void
   searchByHomeworld: (homeworld: string) => void,
   resetFilterButton: boolean,
-  setResetFilterButton: () => void
+  setResetFilterButton: () => void,
+  setPeopleByPlanet: (persons: PeopleType[]) => void
 }
 
 export const usePeopleStore = create<usePeoplesStoreState>((set) => ({
@@ -27,6 +28,13 @@ export const usePeopleStore = create<usePeoplesStoreState>((set) => ({
   })),
   setInitialPeople: (starWarsResponse: StarWarsApiResponseType) => set((state) => ({
     initialPeopleState: starWarsResponse
+  })),
+  setPeopleByPlanet: (persons: PeopleType[]) => set((state) =>({
+    peopleStore: {
+      ...state.peopleStore,
+      results: persons
+    },
+    resetFilterButton: true
   })),
   searchByHomeworld: (homeworld: string) => set((state) => ({
     peopleStore: {

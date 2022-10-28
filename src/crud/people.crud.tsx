@@ -23,3 +23,21 @@ export async function getPeople(page: number) {
     return Promise.reject(err)
   }
 }
+
+export async function getOnePeopleById(id: number) {
+  try {
+    const response = await peopleApi.get(`/people/${id}`)
+    return Promise.resolve(response.data)
+  } catch (err) {
+    return Promise.reject(err)
+  }
+}
+
+export async function getPeopleByPlanet(planet: string) {
+  try {
+    const response = await peopleApi.get(`/planets/${planet}`)
+    return Promise.resolve(response.data)
+  } catch (err) {
+    return Promise.reject(err)
+  }
+}

@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 
 // helpers & misc state imports
-import { peopleConstants } from "../../constants/peopleConstants";
+import { SWConstants } from "../../constants/peopleConstants";
 import { usePeoplesStoreState, usePeopleStore } from '../../store/peopleStore'
 import useFetch from "../../hooks/useFetch";
 
@@ -19,10 +19,10 @@ import Spinner from '../UI/Spinner';
 const StarWarsPeople = () => {
   const {setPeople, setInitialPeople} = usePeopleStore((state: usePeoplesStoreState) => state)
   const {data: peopleData, error: peopleError, status: peopleStatus } = useFetch({
-    queryRepo: peopleConstants.STARWARS,
+    queryRepo: SWConstants.PEOPLE,
     apiCall: fetchPeople(),
   });
-
+  
   useEffect(() => {
     if(peopleStatus === 'success') {
       setPeople(peopleData)

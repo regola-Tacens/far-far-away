@@ -16,13 +16,16 @@ export type usePeoplesStoreState = {
   searchByHomeworld: (homeworld: string) => void,
   resetFilterButton: boolean,
   setResetFilterButton: () => void,
-  setPeopleByPlanet: (persons: PeopleType[]) => void
+  setPeopleByPlanet: (persons: PeopleType[]) => void,
+  filterName: string, 
+  setFilterName: (filterName: string) => void
 }
 
 export const usePeopleStore = create<usePeoplesStoreState>((set) => ({
   peopleStore: initialPeopleState,
   initialPeopleState: initialPeopleState,
   resetFilterButton: false,
+  filterName:'',
   setPeople: (starWarsResponse: StarWarsApiResponseType) => set((state) => ({
     peopleStore: starWarsResponse
   })),
@@ -46,6 +49,10 @@ export const usePeopleStore = create<usePeoplesStoreState>((set) => ({
     resetFilterButton: true
   })),
   setResetFilterButton: () => set((state) =>({
-    resetFilterButton: false
+    resetFilterButton: false,
+    filterName: ''
+  })),
+  setFilterName: (filterName: string) => set((state) => ({
+    filterName: filterName
   }))
 }))

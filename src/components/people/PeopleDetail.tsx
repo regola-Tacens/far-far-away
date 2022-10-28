@@ -3,22 +3,33 @@ import { PeopleType } from "../../types/peopleType"
 
 // store imports
 import { usePeoplesStoreState, usePeopleStore } from "../../store/peopleStore"
+
+// component immports
 import { Chip } from "primereact/chip"
 
-// crud import
-import { getOnePeopleById, getPeopleByPlanet } from "../../crud/people.crud"
+// helpers & state imports
 import { SearchByHomeworld } from "../../crud/actions/peopleActions"
+import useFetch from "../../hooks/useFetch"
+
+// crud import
+import { SWConstants } from "../../constants/peopleConstants"
+import { fetchPlanetById } from "../../crud/planet.crud"
 
 type PeopleDetailType = {
   people: PeopleType
 }
 const PeopleDetail = ({people}: PeopleDetailType) => {
-  const {setPeopleByPlanet} = usePeopleStore((state: usePeoplesStoreState) => state)
-
+  const {setPeopleByPlanet, setFilterName} = usePeopleStore((state: usePeoplesStoreState) => state)
+  const {data: planetData, error: planetError, status: planetStatus } = useFetch({
+    queryRepo: SWConstants.PLANETS,
+    apiCall: fetchPlanetById(people.homeworld),
+  });
+  
   const handleSearchByHomeworld = async() => {
     try {
       const persons = await SearchByHomeworld(people.homeworld)
       setPeopleByPlanet(persons)
+      setFilterName(planetData.name)
     } catch (err) {
       console.error(err)
     }
@@ -34,7 +45,7 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
       <div><span>Height:</span> {people.height} cm</div>
       <div><span>Weight:</span> {people.mass} Kg</div>
       <div>
-        <span>Homeworld:</span> {people.homeworld}
+        <span>Homeworld:</span> {planetData?.name}
         <span 
           className="peopledetail__filterbtn" 
           onClick={handleSearchByHomeworld}

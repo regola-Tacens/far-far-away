@@ -2,8 +2,10 @@ import { Chip } from "primereact/chip"
 import { usePeoplesStoreState, usePeopleStore } from "../../store/peopleStore"
 
 const PeopleSearchFilters = () => {
+  const {filterName} = usePeopleStore((state: usePeoplesStoreState) => state)
   const {setPeople, initialPeopleState, resetFilterButton, setResetFilterButton} = usePeopleStore((state: usePeoplesStoreState) => state)
   if (!resetFilterButton) return null
+  
   const handleResetPeople = () => {
     setPeople(initialPeopleState)
     setResetFilterButton()
@@ -11,7 +13,7 @@ const PeopleSearchFilters = () => {
 
   return (
     <div className="reset__filters" onClick={handleResetPeople}>
-      <Chip label='reset filters' className="mr-2 mb-2 custom-chip" />
+      <Chip label={filterName} className="p-mb-2" removable />
     </div>
   )
 }

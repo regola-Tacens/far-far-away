@@ -1,3 +1,4 @@
-export const peopleConstants = {
-  STARWARS: 'people'
+export const SWConstants = {
+  PEOPLE: 'people',
+  PLANETS: 'planets'
 }

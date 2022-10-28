@@ -23,11 +23,11 @@ type PeopleDetailType = {
 
 const PeopleDetail = ({people}: PeopleDetailType) => {
   const {setPeopleByPlanet, setFilterName} = usePeopleStore((state: usePeoplesStoreState) => state)
-  
   const {data: planetData, error: planetError, status: planetStatus } = useFetch({
     queryRepo: SWConstants.PLANETS,
     apiCall: fetchPlanetById(people.homeworld),
   });
+  
   const handleSearchByHomeworld = async() => {
     try {
       const persons = await SearchByHomeworld(people.homeworld)

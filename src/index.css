@@ -28,14 +28,15 @@
   cursor: pointer;
   margin: 0 10px;
 }
-.poepledetail__films {
+.poepledetail__films__card {
   position: relative;
-  min-width: 250px;
+  min-width: 280px;
+  padding-left: 10px;
 }
 .poepledetail__films__badge {
   position: absolute;
-  right: 15px;
-  top: 15px;
+  left: -13px;
+  top: 21px;
 }
 .reset__filters {
   margin: 1rem 0;

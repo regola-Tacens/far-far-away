@@ -7,7 +7,7 @@ import { Badge } from 'primereact/badge';
 import { fetchFilmById } from "../../crud/film.crud"
 
 // type imports
-import { PeopleType } from "../../types/peopleType"
+import { FilmType, PeopleType } from "../../types/peopleType"
 
 // component imports
 import Spinner from "../UI/Spinner"
@@ -15,10 +15,8 @@ import Spinner from "../UI/Spinner"
 type PeopleDetailFilmsProps = {
   people: PeopleType
 }
-type Film = {
-  title: string,
-  url: string
-}
+
+type Film = Pick<FilmType, 'title' | 'url'>
 
 const PeopleDetailFilms = ({people}: PeopleDetailFilmsProps) => {
   const [films, setFilms] = useState<Film[]>([])
@@ -40,11 +38,11 @@ const PeopleDetailFilms = ({people}: PeopleDetailFilmsProps) => {
   }, [])
 
   return (
-    <Card title="Films" className="poepledetail__films">
+    <Card title="Films" className="poepledetail__films__card">
       <Badge className="poepledetail__films__badge" value={films.length} severity="success" />
       {
         films.length > 0 ?
-        films && films.map((film) => (
+        films.map((film) => (
           <div key={film.title}>
             - {film.title}
           </div>

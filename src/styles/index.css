@@ -40,6 +40,12 @@
   left: -13px;
   top: 21px;
 }
+.poepledetail__films__film {
+  cursor: pointer;
+}
+.poepledetail__films__film:hover {
+  color: var(--primary-color);
+}
 .search__filters {
   margin: 1rem 0;
   cursor: pointer;

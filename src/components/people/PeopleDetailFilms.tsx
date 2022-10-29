@@ -26,7 +26,7 @@ const PeopleDetailFilms = ({people, handleSearchByFilm}: PeopleDetailFilmsProps)
       {
         films.length > 0 ?
         films.map((film) => (
-          <div key={film.title} onClick={() => handleSearchByFilm(film.url)}>
+          <div className="poepledetail__films__film" key={film.title} onClick={() => handleSearchByFilm(film.url)}>
             - {film.title}
           </div>
         ))

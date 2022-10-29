@@ -36,3 +36,12 @@ export async function getPeopleByPlanet(planet: string[] | null) {
     return Promise.reject(err)
   }
 }
+
+export async function getPeopleBySpecies(specieId: number) {
+  try {
+    const response = await swapiAPI.get(`/species/${specieId}`)
+    return Promise.resolve(response.data)
+  } catch (err) {
+    return Promise.reject(err)
+  }
+}

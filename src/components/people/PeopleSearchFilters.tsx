@@ -8,7 +8,7 @@ import { usePeoplesStoreState, usePeopleStore } from "../../store/peopleStore"
 
 const PeopleSearchFilters = () => {
   const {peopleStore, setPeople, initialPeopleState} = usePeopleStore((state: usePeoplesStoreState) => state)
-  const {filterName, resetFilterButton, setResetFilterButton} = useFilterStore((state: useFilterStoreState) => state)
+  const {filterType, filterName, resetFilterButton, setResetFilterButton} = useFilterStore((state: useFilterStoreState) => state)
 
   if (!resetFilterButton) return null
   const peopleQuantity = peopleStore?.results?.length
@@ -27,7 +27,7 @@ const PeopleSearchFilters = () => {
       />
       <Chip 
         className="p-mb-2" 
-        label={`Living on planet ${filterName}`} 
+        label={`${filterType} ${filterName}`} 
         removable 
       />
     </div>

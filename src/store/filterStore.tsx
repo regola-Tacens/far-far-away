@@ -1,19 +1,22 @@
 import create from 'zustand'
 
 export type useFilterStoreState = {
+  filterType: string,
   filterName: string,
-  setFilterName: (filterName: string) => void,
+  setFilterName: (filterType: string, filterName: string) => void,
   resetFilterButton: boolean,
   setResetFilterButton: (isFilterTrue: boolean) => void,
 }
 
 export const useFilterStore = create<useFilterStoreState>((set) => ({
+  filterType: '',
   filterName: '',
   resetFilterButton: false,
   setResetFilterButton: (isFilterTrue: boolean) => set((state) =>({
     resetFilterButton: isFilterTrue,
   })),
-  setFilterName: (filterName: string) => set((state) => ({
+  setFilterName: (filterType: string, filterName: string) => set((state) => ({
+    filterType: filterType,
     filterName: filterName
   }))
 }))

@@ -6,15 +6,15 @@ import { usePeoplesStoreState, usePeopleStore } from "../../store/peopleStore"
 import { useFilterStore, useFilterStoreState } from "../../store/filterStore"
 
 // component immports
-import { Button } from "primereact/button"
 import PeopleDetailFilms from "./PeopleDetailFilms"
+import PeopleDetailSearchButtons from "./PeopleDetailSearchButton"
 
 // helpers & state imports
 import useFetch from "../../hooks/useFetch"
 import { SWConstants } from "../../constants/peopleConstants"
 
 // crud import
-import { SearchByHomeworld } from "../../crud/actions/peopleActions"
+import { SearchByHomeworld, searchBySpecies } from "../../crud/actions/peopleActions"
 import { fetchPlanetById } from "../../crud/planet.crud"
 import { fetchSpeciesById } from "../../crud/species.crud"
 
@@ -42,9 +42,20 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
     try {
       const persons = await SearchByHomeworld(people.homeworld)
       setPeopleByPlanet(persons)
-      setFilterName(planetData.name)
+      setFilterName(SWConstants.PLANETS, planetData.name)
       setResetFilterButton(true)
       window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const handleSearchBySpecies = async() => {
+    try {
+      const persons = await searchBySpecies(people.species)
+      setPeopleByPlanet(persons)
+      setFilterName(SWConstants.SPECIES, speciesData.name)
+      setResetFilterButton(true)
     } catch (err) {
       console.error(err)
     }
@@ -60,17 +71,16 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
         <div><span>Skin color:</span> {people.skin_color}</div>
         <div><span>Height:</span> {people.height} cm</div>
         <div><span>Weight:</span> {people.mass} Kg</div>
-        <div><span>Species:</span> {people.species.length > 0 ? speciesData?.name : 'n/a'}</div>
-        <div className="flex">
-          <div>
-            <div className="peopledetail__filterbtn">Homeworld: {planetData?.name}</div>
-          </div>
-          <Button 
-            className="p-button-rounded p-button-success p-button-outlined"
-            onClick={handleSearchByHomeworld} 
-            icon="pi pi-filter" 
-          />
-        </div>
+        <PeopleDetailSearchButtons 
+          label='Species'
+          labelName={people.species.length > 0 ? speciesData?.name : 'n/a'}
+          handleCallback={handleSearchBySpecies}
+        />
+        <PeopleDetailSearchButtons 
+          label='Homeworld'
+          labelName={planetData?.name}
+          handleCallback={handleSearchByHomeworld}
+        />
       </div>
       <div>
         <PeopleDetailFilms people={people} />

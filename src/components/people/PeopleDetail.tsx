@@ -38,13 +38,17 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
     param: people.species.length > 0
   });
 
+  const setSearchResult = (persons: PeopleType[], filterType: string, filterName: string) => {
+    setPeople(persons)
+    setResetFilterButton(true)
+    setFilterName(filterType, filterName)
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   const handleSearchByHomeworld = async() => {
     try {
       const persons = await SearchByHomeworld(people.homeworld)
-      setPeople(persons)
-      setFilterName(SWConstants.PLANETS, planetData.name)
-      setResetFilterButton(true)
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      setSearchResult(persons, SWConstants.PLANETS, planetData.name)
     } catch (err) {
       console.error(err)
     }
@@ -53,10 +57,7 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
   const handleSearchBySpecies = async() => {
     try {
       const persons = await searchBySpecies(people.species)
-      setPeople(persons)
-      setFilterName(SWConstants.SPECIES, speciesData.name)
-      setResetFilterButton(true)
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      setSearchResult(persons, SWConstants.SPECIES, speciesData.name)
     } catch (err) {
       console.error(err)
     }

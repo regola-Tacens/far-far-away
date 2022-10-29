@@ -8,6 +8,13 @@ type useFetchProps = {
 }
 
 const useFetch = ({queryRepo, apiCall, param}: useFetchProps) => {
-  return useQuery(queryRepo, async() => await apiCall, {enabled: param})
+  return useQuery(
+    queryRepo,
+    async() => await apiCall,
+    {
+      enabled: param,
+      retry: 1
+    }
+  )
 }
 export default useFetch;

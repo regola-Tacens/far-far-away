@@ -26,8 +26,8 @@ const PeopleSearchFilters = () => {
         severity="success"
       />
       <Chip 
-        className="p-mb-2" 
-        label={`${filterType} ${filterName}`} 
+        className="search__filters__chip" 
+        label={`${filterType}:  ${filterName}`} 
         removable 
       />
     </div>

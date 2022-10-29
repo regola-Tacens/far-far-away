@@ -49,7 +49,11 @@
 .search__filters__badge {
   position: absolute;
   top: -1rem;
-  left: -1rem;
+  left: 0rem;
+  border: 1px solid #1f1f1f;
+}
+.search__filters__chip {
+  padding: 0 20px !important ;
 }
 .spinner {
   width: 100%;

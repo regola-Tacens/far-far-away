@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import {ReactQueryDevtools} from 'react-query/devtools';
 import StarWarsPeople from './components/people';
 import SWLogo from './assets/sw-logo.svg'
-import './App.css'
+import './styles/App.css'
 
 function App() {
   const queryClient = new QueryClient();

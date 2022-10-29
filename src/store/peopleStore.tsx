@@ -16,6 +16,7 @@ export type usePeoplesStoreState = {
   searchByHomeworld: (homeworld: string) => void,
   setPeopleByPlanet: (persons: PeopleType[]) => void,
   activeIndex: number,
+  resetActiveIndex: () => void
 }
 
 export const usePeopleStore = create<usePeoplesStoreState>((set) => ({
@@ -41,6 +42,9 @@ export const usePeopleStore = create<usePeoplesStoreState>((set) => ({
         ...state.peopleStore.results.filter(people => people.homeworld === homeworld)
       ]
     },
+    activeIndex: -1
+  })),
+  resetActiveIndex: () => set((state) => ({
     activeIndex: -1
   })),
 }))

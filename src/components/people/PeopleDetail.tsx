@@ -16,6 +16,7 @@ import { SWConstants } from "../../constants/peopleConstants"
 // crud import
 import { SearchByHomeworld } from "../../crud/actions/peopleActions"
 import { fetchPlanetById } from "../../crud/planet.crud"
+import { fetchSpeciesById } from "../../crud/species.crud"
 
 type PeopleDetailType = {
   people: PeopleType
@@ -28,8 +29,15 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
   const {data: planetData, error: planetError, status: planetStatus } = useFetch({
     queryRepo: SWConstants.PLANETS,
     apiCall: fetchPlanetById(people.homeworld),
+    param: !!people.homeworld
   });
-  
+
+  const {data: speciesData, error: speciesError, status: speciesStatus } = useFetch({
+    queryRepo: SWConstants.SPECIES,
+    apiCall: fetchSpeciesById(people.species),
+    param: people.species.length > 0
+  });
+
   const handleSearchByHomeworld = async() => {
     try {
       const persons = await SearchByHomeworld(people.homeworld)
@@ -52,6 +60,7 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
         <div><span>Skin color:</span> {people.skin_color}</div>
         <div><span>Height:</span> {people.height} cm</div>
         <div><span>Weight:</span> {people.mass} Kg</div>
+        <div><span>Species:</span> {people.species.length > 0 ? speciesData?.name : 'n/a'}</div>
         <div className="flex">
           <div>
             <div className="peopledetail__filterbtn">Homeworld: {planetData?.name}</div>

@@ -3,10 +3,11 @@ import {useQuery} from 'react-query';
 
 type useFetchProps = {
   queryRepo: string,
-  apiCall: Promise<any>
+  apiCall: Promise<any>,
+  param: boolean 
 }
 
-const useFetch = ({queryRepo, apiCall}: useFetchProps) => {
-  return useQuery(queryRepo, async() => await apiCall)
+const useFetch = ({queryRepo, apiCall, param}: useFetchProps) => {
+  return useQuery(queryRepo, async() => await apiCall, {enabled: param})
 }
 export default useFetch;

@@ -9,10 +9,10 @@ import PeopleDetail from './PeopleDetail';
 
 const PeopleTable = () => {
   const {peopleStore, activeIndex} = usePeopleStore((state: usePeoplesStoreState) => state)
-
+  
   return (
-    <div>
-       <Accordion activeIndex={activeIndex} className="people__accordion">
+    <div className="people__accordion">
+       <Accordion activeIndex={activeIndex}>
         { 
           peopleStore?.results?.map(people => (
             <AccordionTab header={<h3>{people.name}</h3>} key={people.name}>

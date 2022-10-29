@@ -11,6 +11,7 @@
 }
 .people__accordion {
   width: 800px;
+  margin-bottom: 6rem;
 }
 .peopledetail {
   display: flex;

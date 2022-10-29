@@ -21,6 +21,7 @@ const StarWarsPeople = () => {
   const {data: peopleData, error: peopleError, status: peopleStatus } = useFetch({
     queryRepo: SWConstants.PEOPLE,
     apiCall: fetchPeople(),
+    param: true
   });
   
   useEffect(() => {

@@ -1,4 +1,5 @@
 export const SWConstants = {
   PEOPLE: 'people',
-  PLANETS: 'planets'
+  PLANETS: 'planets',
+  SPECIES: 'species'
 }

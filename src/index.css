@@ -38,11 +38,16 @@
   left: -13px;
   top: 21px;
 }
-.reset__filters {
+.search__filters {
   margin: 1rem 0;
   cursor: pointer;
   position: absolute;
   top: 2rem;
+}
+.search__filters__badge {
+  position: absolute;
+  top: -1rem;
+  left: -1rem;
 }
 .spinner {
   width: 100%;

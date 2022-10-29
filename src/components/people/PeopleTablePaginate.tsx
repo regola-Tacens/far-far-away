@@ -45,6 +45,7 @@ const PeopleTablePaginate = () => {
       console.error(err)
     }
   }
+  
 return (
   <div className="paginate">
     <div className="paginate__page">

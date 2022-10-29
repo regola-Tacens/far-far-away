@@ -17,7 +17,7 @@ import PeopleSearchFilters from './PeopleSearchFilters';
 import Spinner from '../UI/Spinner';
 
 const StarWarsPeople = () => {
-  const {setPeople, setInitialPeople} = usePeopleStore((state: usePeoplesStoreState) => state)
+  const {setPeopleStore, setInitialPeople} = usePeopleStore((state: usePeoplesStoreState) => state)
   const {data: peopleData, error: peopleError, status: peopleStatus } = useFetch({
     queryRepo: SWConstants.PEOPLE,
     apiCall: fetchPeople(),
@@ -26,7 +26,7 @@ const StarWarsPeople = () => {
   
   useEffect(() => {
     if(peopleStatus === 'success') {
-      setPeople(peopleData)
+      setPeopleStore(peopleData)
       setInitialPeople(peopleData)
     } 
   }, [peopleStatus])

@@ -23,7 +23,7 @@ type PeopleDetailType = {
 }
 
 const PeopleDetail = ({people}: PeopleDetailType) => {
-  const {setPeopleByPlanet} = usePeopleStore((state: usePeoplesStoreState) => state)
+  const {setPeople} = usePeopleStore((state: usePeoplesStoreState) => state)
   const {setFilterName, setResetFilterButton} = useFilterStore((state: useFilterStoreState) => state)
 
   const {data: planetData, error: planetError, status: planetStatus } = useFetch({
@@ -41,7 +41,7 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
   const handleSearchByHomeworld = async() => {
     try {
       const persons = await SearchByHomeworld(people.homeworld)
-      setPeopleByPlanet(persons)
+      setPeople(persons)
       setFilterName(SWConstants.PLANETS, planetData.name)
       setResetFilterButton(true)
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -53,9 +53,10 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
   const handleSearchBySpecies = async() => {
     try {
       const persons = await searchBySpecies(people.species)
-      setPeopleByPlanet(persons)
+      setPeople(persons)
       setFilterName(SWConstants.SPECIES, speciesData.name)
       setResetFilterButton(true)
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (err) {
       console.error(err)
     }
@@ -72,12 +73,12 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
         <div><span>Height:</span> {people.height} cm</div>
         <div><span>Weight:</span> {people.mass} Kg</div>
         <PeopleDetailSearchButtons 
-          label='Species'
+          label={SWConstants.SPECIES}
           labelName={people.species.length > 0 ? speciesData?.name : 'n/a'}
           handleCallback={handleSearchBySpecies}
         />
         <PeopleDetailSearchButtons 
-          label='Homeworld'
+          label={SWConstants.PLANETS}
           labelName={planetData?.name}
           handleCallback={handleSearchByHomeworld}
         />

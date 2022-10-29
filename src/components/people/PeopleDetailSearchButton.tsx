@@ -13,11 +13,13 @@ const PeopleDetailSearchButtons = ({label, labelName, handleCallback}: PeopleDet
     <div>
       <div className="peopledetail__filterbtn">{label} {labelName}</div>
     </div>
-    <Button 
-      className="p-button-rounded p-button-success p-button-outlined"
-      onClick={handleCallback} 
-      icon="pi pi-filter" 
-    />
+    {labelName && labelName !== 'n/a' &&
+      <Button 
+        className="p-button-rounded p-button-success p-button-outlined"
+        onClick={handleCallback} 
+        icon="pi pi-filter" 
+      />
+    }
   </div>
   )
 }

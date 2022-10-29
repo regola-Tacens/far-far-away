@@ -13,7 +13,7 @@ import { usePeoplesStoreState, usePeopleStore } from "../../store/peopleStore"
 import { useFilterStore, useFilterStoreState } from "../../store/filterStore";
 
 const PeopleTablePaginate = () => {
-  const {peopleStore, setPeople} = usePeopleStore((state: usePeoplesStoreState) => state)
+  const {peopleStore, setPeopleStore} = usePeopleStore((state: usePeoplesStoreState) => state)
   const {setResetFilterButton} = useFilterStore((state: useFilterStoreState) => state)
 
   const nextPage = useMemo(() => {
@@ -40,7 +40,7 @@ const PeopleTablePaginate = () => {
     try {
       if (pageDirection[direction] !== null ){
         const peopleUpdated =  await getPeople(Number(pageDirection[direction]))
-        setPeople(peopleUpdated)
+        setPeopleStore(peopleUpdated)
         setResetFilterButton(false)
       }
     } catch (err) {

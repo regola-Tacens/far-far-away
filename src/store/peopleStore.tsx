@@ -11,10 +11,10 @@ const initialPeopleState = {
 export type usePeoplesStoreState = {
   peopleStore: StarWarsApiResponseType,
   initialPeopleState: StarWarsApiResponseType,
-  setPeople: (people: StarWarsApiResponseType) => void
+  setPeopleStore: (people: StarWarsApiResponseType) => void
   setInitialPeople: (people: StarWarsApiResponseType) => void
   searchByHomeworld: (homeworld: string) => void,
-  setPeopleByPlanet: (persons: PeopleType[]) => void,
+  setPeople: (persons: PeopleType[]) => void,
   activeIndex: number,
   resetActiveIndex: () => void
 }
@@ -23,13 +23,13 @@ export const usePeopleStore = create<usePeoplesStoreState>((set) => ({
   peopleStore: initialPeopleState,
   initialPeopleState: initialPeopleState,
   activeIndex: -1,
-  setPeople: (starWarsResponse: StarWarsApiResponseType) => set((state) => ({
+  setPeopleStore: (starWarsResponse: StarWarsApiResponseType) => set((state) => ({
     peopleStore: starWarsResponse
   })),
   setInitialPeople: (starWarsResponse: StarWarsApiResponseType) => set((state) => ({
     initialPeopleState: starWarsResponse
   })),
-  setPeopleByPlanet: (persons: PeopleType[]) => set((state) =>({
+  setPeople: (persons: PeopleType[]) => set((state) =>({
     peopleStore: {
       ...state.peopleStore,
       results: persons

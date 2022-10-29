@@ -7,14 +7,14 @@ import { useFilterStore, useFilterStoreState } from "../../store/filterStore"
 import { usePeoplesStoreState, usePeopleStore } from "../../store/peopleStore"
 
 const PeopleSearchFilters = () => {
-  const {peopleStore, setPeople, initialPeopleState} = usePeopleStore((state: usePeoplesStoreState) => state)
+  const {peopleStore, setPeopleStore, initialPeopleState} = usePeopleStore((state: usePeoplesStoreState) => state)
   const {filterType, filterName, resetFilterButton, setResetFilterButton} = useFilterStore((state: useFilterStoreState) => state)
 
   if (!resetFilterButton) return null
   const peopleQuantity = peopleStore?.results?.length
 
   const handleResetPeople = () => {
-    setPeople(initialPeopleState)
+    setPeopleStore(initialPeopleState)
     setResetFilterButton(false)
   }
 

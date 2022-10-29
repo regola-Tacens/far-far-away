@@ -27,7 +27,7 @@ const PeopleSearchFilters = () => {
       />
       <Chip 
         className="search__filters__chip" 
-        label={`${filterType}:  ${filterName}`} 
+        label={`${filterType.toUpperCase()}:  ${filterName}`} 
         removable 
       />
     </div>

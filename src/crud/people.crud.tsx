@@ -45,3 +45,12 @@ export async function getPeopleBySpecies(specieId: number) {
     return Promise.reject(err)
   }
 }
+
+export async function getPeopleByFilm(filmId: number) {
+  try {
+    const response = await swapiAPI.get(`/films/${filmId}`)
+    return Promise.resolve(response.data)
+  } catch (err) {
+    return Promise.reject(err)
+  }
+}

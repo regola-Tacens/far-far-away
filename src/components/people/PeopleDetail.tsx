@@ -14,7 +14,7 @@ import useFetch from "../../hooks/useFetch"
 import { SWConstants } from "../../constants/peopleConstants"
 
 // crud import
-import { SearchByHomeworld, searchBySpecies } from "../../crud/actions/peopleActions"
+import { searchByFilm, SearchByHomeworld, searchBySpecies } from "../../crud/actions/peopleActions"
 import { fetchPlanetById } from "../../crud/planet.crud"
 import { fetchSpeciesById } from "../../crud/species.crud"
 
@@ -63,6 +63,15 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
     }
   }
 
+  const handleSearchByFilm = async(film: string) => {
+    try {
+      const {persons, pickedFilm} = await searchByFilm(film)
+      setSearchResult(persons, SWConstants.FILM, pickedFilm.title)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   return(
     <div className="peopledetail">
       <div>
@@ -85,7 +94,10 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
         />
       </div>
       <div>
-        <PeopleDetailFilms people={people} />
+        <PeopleDetailFilms 
+          people={people} 
+          handleSearchByFilm={handleSearchByFilm}
+        />
       </div>
     </div>
   )

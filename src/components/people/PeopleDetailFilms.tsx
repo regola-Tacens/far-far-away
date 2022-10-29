@@ -4,25 +4,29 @@ import { Badge } from 'primereact/badge';
 
 // type imports
 import { PeopleType } from "../../types/peopleType"
+import { FilmType } from '../../types/filmsType';
 
 // component imports
 import Spinner from "../UI/Spinner"
+
+// helpers & misc imports
 import { useGetFilmsByOnePeople } from "../../hooks/useFilms";
 
 type PeopleDetailFilmsProps = {
-  people: PeopleType
+  people: PeopleType,
+  handleSearchByFilm: (film: string) => void
 }
 
-const PeopleDetailFilms = ({people}: PeopleDetailFilmsProps) => {
+const PeopleDetailFilms = ({people, handleSearchByFilm}: PeopleDetailFilmsProps) => {
   const {films, error} = useGetFilmsByOnePeople(people)
-
+  
   return (
     <Card title="Films" className="poepledetail__films__card">
       <Badge className="poepledetail__films__badge" value={films.length} severity="success" />
       {
         films.length > 0 ?
         films.map((film) => (
-          <div key={film.title}>
+          <div key={film.title} onClick={() => handleSearchByFilm(film.url)}>
             - {film.title}
           </div>
         ))

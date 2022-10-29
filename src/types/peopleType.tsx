@@ -1,4 +1,3 @@
-import { FilmType } from "./filmsType"
 
 export type PeopleType = {
   name: string,
@@ -10,7 +9,7 @@ export type PeopleType = {
   mass: string,
   skin_color: string,
   homeworld: string,
-  films: FilmType[],
+  films: string[],
   species: [],
   starships: [],
   vehicles: [],

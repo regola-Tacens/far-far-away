@@ -1,42 +1,20 @@
 // library imports
-import { useEffect, useState } from "react"
 import { Card } from 'primereact/card';
 import { Badge } from 'primereact/badge';
 
-// crud import
-import { fetchFilmById } from "../../crud/film.crud"
-
 // type imports
 import { PeopleType } from "../../types/peopleType"
-import { FilmType } from "../../types/filmsType"
 
 // component imports
 import Spinner from "../UI/Spinner"
+import { useGetFilmsByOnePeople } from "../../hooks/useFilms";
 
 type PeopleDetailFilmsProps = {
   people: PeopleType
 }
 
-type Film = Pick<FilmType, 'title' | 'url'>
-
 const PeopleDetailFilms = ({people}: PeopleDetailFilmsProps) => {
-  const [films, setFilms] = useState<Film[]>([])
-  
-  useEffect(() => {
-    const getFilms = async() => {
-      try {
-        let films: Film[] = []
-        for(let film of people.films) {
-          const result: Film = await fetchFilmById(film)
-          films.push({title: result.title, url: result.url})
-        }
-        setFilms(films)
-      } catch (err) {
-        console.error(err)
-      }
-    }
-    getFilms()
-  }, [])
+  const {films, error} = useGetFilmsByOnePeople(people)
 
   return (
     <Card title="Films" className="poepledetail__films__card">

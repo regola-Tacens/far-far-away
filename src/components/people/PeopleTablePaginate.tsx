@@ -10,9 +10,11 @@ import { Chip } from 'primereact/chip';
 
 // store imports
 import { usePeoplesStoreState, usePeopleStore } from "../../store/peopleStore"
+import { useFilterStore, useFilterStoreState } from "../../store/filterStore";
 
 const PeopleTablePaginate = () => {
-  const {peopleStore, setPeople, setResetFilterButton} = usePeopleStore((state: usePeoplesStoreState) => state)
+  const {peopleStore, setPeople} = usePeopleStore((state: usePeoplesStoreState) => state)
+  const {setResetFilterButton} = useFilterStore((state: useFilterStoreState) => state)
 
   const nextPage = useMemo(() => {
     return peopleStore.next && peopleStore.next?.charAt(peopleStore.next.length - 1)
@@ -39,13 +41,13 @@ const PeopleTablePaginate = () => {
       if (pageDirection[direction] !== null ){
         const peopleUpdated =  await getPeople(Number(pageDirection[direction]))
         setPeople(peopleUpdated)
-        setResetFilterButton()
+        setResetFilterButton(false)
       }
     } catch (err) {
       console.error(err)
     }
   }
-  
+
 return (
   <div className="paginate">
     <div className="paginate__page">

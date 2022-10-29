@@ -3,17 +3,19 @@ import { Badge } from "primereact/badge"
 import { Chip } from "primereact/chip"
 
 // store imports
+import { useFilterStore, useFilterStoreState } from "../../store/filterStore"
 import { usePeoplesStoreState, usePeopleStore } from "../../store/peopleStore"
 
 const PeopleSearchFilters = () => {
-  const {peopleStore, filterName, setPeople, initialPeopleState, resetFilterButton, setResetFilterButton} = usePeopleStore((state: usePeoplesStoreState) => state)
-  if (!resetFilterButton) return null
+  const {peopleStore, setPeople, initialPeopleState} = usePeopleStore((state: usePeoplesStoreState) => state)
+  const {filterName, resetFilterButton, setResetFilterButton} = useFilterStore((state: useFilterStoreState) => state)
 
+  if (!resetFilterButton) return null
   const peopleQuantity = peopleStore?.results?.length
 
   const handleResetPeople = () => {
     setPeople(initialPeopleState)
-    setResetFilterButton()
+    setResetFilterButton(false)
   }
 
   return (

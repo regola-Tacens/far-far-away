@@ -26,7 +26,8 @@
 }
 .peopledetail__filterbtn {
   cursor: pointer;
-  margin: 0 10px;
+  margin-right: 10px;
+  font-weight: bold;
 }
 .poepledetail__films__card {
   position: relative;

@@ -7,7 +7,8 @@ import { Badge } from 'primereact/badge';
 import { fetchFilmById } from "../../crud/film.crud"
 
 // type imports
-import { FilmType, PeopleType } from "../../types/peopleType"
+import { PeopleType } from "../../types/peopleType"
+import { FilmType } from "../../types/filmsType"
 
 // component imports
 import Spinner from "../UI/Spinner"

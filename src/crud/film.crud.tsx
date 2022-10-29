@@ -1,5 +1,5 @@
 // type imports
-import { FilmType } from '../types/peopleType'
+import { FilmType } from '../types/filmsType'
 
 // axios
 import { swapiAPI } from './axios'

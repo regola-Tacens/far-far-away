@@ -5,7 +5,7 @@ import { Accordion, AccordionTab } from 'primereact/accordion';
 import { usePeoplesStoreState, usePeopleStore } from '../../../store/peopleStore';
 
 // component imports
-import PeopleDetail from '../peopleDetail/PeopleDetail';
+import PeopleDetail from './peopleTableDetail/PeopleDetail';
 
 const PeopleTable = () => {
   const {peopleStore, activeIndex} = usePeopleStore((state: usePeoplesStoreState) => state)

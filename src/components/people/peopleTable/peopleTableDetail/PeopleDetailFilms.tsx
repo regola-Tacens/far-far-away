@@ -4,15 +4,15 @@ import { Badge } from 'primereact/badge';
 import { useState } from 'react';
 
 // type imports
-import { PeopleType } from "../../../types/peopleType"
+import { PeopleType } from "../../../../types/peopleType"
 
 // component imports
-import Spinner from "../../UI/Spinner"
+import Spinner from "../../../UI/Spinner"
 import PeopleDetailDialog from './PeopleDetailDialog';
 
 // helpers & misc imports
-import { useGetFilmsByOnePeople } from "../../../hooks/useFilms";
-import { SelectedFilm } from '../../../store/filmStore';
+import { useGetFilmsByOnePeople } from "../../../../hooks/useFilms";
+import { SelectedFilm } from '../../../../store/filmStore';
 
 type PeopleDetailFilmsProps = {
   people: PeopleType,

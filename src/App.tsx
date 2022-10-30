@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
 import {ReactQueryDevtools} from 'react-query/devtools';
 import StarWarsPeople from './components/people';
-import SWLogo from './assets/sw-logo.svg'
+// import SWLogo from './assets/sw-logo.svg'
 import './styles/App.css'
 
 function App() {
@@ -10,7 +10,6 @@ function App() {
   return (
     <div className='app'>
       <QueryClientProvider client={queryClient}>
-        <img className="app__starwars-logo" src={SWLogo}/>
         <StarWarsPeople />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

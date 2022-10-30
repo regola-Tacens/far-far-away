@@ -7,14 +7,14 @@ import { Chip } from 'primereact/chip';
 import PeopleTableSearchInput from "./PeopleTableSearchInput";
 
 // store imports
-import { usePeoplesStoreState, usePeopleStore } from "../../../store/peopleStore"
-import { useFilterStore, useFilterStoreState } from "../../../store/filterStore";
+import { usePeoplesStoreState, usePeopleStore } from "../../../../store/peopleStore"
+import { useFilterStore, useFilterStoreState } from "../../../../store/filterStore";
 
 type PeopleTablePaginateProps = {
   setPage: Dispatch<React.SetStateAction<number>>
 }
 
-const PeopleTablePaginate = ({setPage}: PeopleTablePaginateProps) => {
+const PeopleTableToolbar = ({setPage}: PeopleTablePaginateProps) => {
   const {peopleStore} = usePeopleStore((state: usePeoplesStoreState) => state)
   const {setResetFilterButton} = useFilterStore((state: useFilterStoreState) => state)
 
@@ -75,4 +75,4 @@ return (
 )
 }
 
-export default PeopleTablePaginate
+export default PeopleTableToolbar

@@ -13,9 +13,8 @@ import { fetchPeople } from "../../crud/people.crud";
 
 // component imports
 import PeopleTable from './peopleTable/PeopleTable';
-import PeopleTablePaginate from './peopleTable/PeopleTablePaginate';
-import PeopleSearchFilters from './peopleTable/PeopleTableSearchFilters';
 import Spinner from '../UI/Spinner';
+import Navigation from '../navigation/Navigation';
 
 const StarWarsPeople = () => {
   const {setPeopleStore, setInitialPeople} = usePeopleStore((state: usePeoplesStoreState) => state)
@@ -35,10 +34,7 @@ const StarWarsPeople = () => {
 
 return (
   <div className="starwars__container">
-    <nav className="navigation">
-      <PeopleSearchFilters />
-      <PeopleTablePaginate setPage={setPage} />
-    </nav>
+    <Navigation setPage={setPage} />
     <Spinner loading={peopleStatus} />
     {peopleStatus === "success" && <PeopleTable />}
     <ScrollTop threshold={0} />

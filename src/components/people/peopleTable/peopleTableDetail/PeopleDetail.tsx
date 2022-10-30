@@ -1,22 +1,22 @@
 // type imports
-import { PeopleType } from "../../../types/peopleType"
+import { PeopleType } from "../../../../types/peopleType"
 
 // store imports
-import { usePeoplesStoreState, usePeopleStore } from "../../../store/peopleStore"
-import { useFilterStore, useFilterStoreState } from "../../../store/filterStore"
+import { usePeoplesStoreState, usePeopleStore } from "../../../../store/peopleStore"
+import { useFilterStore, useFilterStoreState } from "../../../../store/filterStore"
 
 // component immports
 import PeopleDetailFilms from "./PeopleDetailFilms"
 import PeopleDetailSearchButtons from "./PeopleDetailSearchButton"
 
 // helpers & state imports
-import useFetch from "../../../hooks/useFetch"
-import { SWConstants } from "../../../constants/peopleConstants"
+import useFetch from "../../../../hooks/useFetch"
+import { SWConstants } from "../../../../constants/peopleConstants"
 
 // crud import
-import { searchByFilm, SearchByHomeworld, searchBySpecies } from "../../../crud/actions/peopleActions"
-import { fetchPlanetById } from "../../../crud/planet.crud"
-import { fetchSpeciesById } from "../../../crud/species.crud"
+import { searchByFilm, SearchByHomeworld, searchBySpecies } from "../../../../crud/actions/peopleActions"
+import { fetchPlanetById } from "../../../../crud/planet.crud"
+import { fetchSpeciesById } from "../../../../crud/species.crud"
 
 type PeopleDetailType = {
   people: PeopleType

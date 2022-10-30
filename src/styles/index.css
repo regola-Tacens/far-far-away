@@ -74,3 +74,6 @@
   background: var(--primary-color);
   color: var(--primary-color-text);
 }
+.p-scrolltop {
+  background: var(--primary-color) !important;
+}

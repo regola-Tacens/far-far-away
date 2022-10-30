@@ -1,6 +1,7 @@
 
 // libray imports
 import { useEffect, useState } from 'react';
+import { ScrollTop } from 'primereact/scrolltop';
 
 // helpers & misc state imports
 import { SWConstants } from "../../constants/peopleConstants";
@@ -40,6 +41,7 @@ return (
     </nav>
     <Spinner loading={peopleStatus} />
     {peopleStatus === "success" && <PeopleTable />}
+    <ScrollTop threshold={0} />
   </div>
 )
 }

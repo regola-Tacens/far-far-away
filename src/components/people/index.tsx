@@ -1,6 +1,6 @@
 
 // libray imports
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // helpers & misc state imports
 import { SWConstants } from "../../constants/peopleConstants";
@@ -18,9 +18,10 @@ import Spinner from '../UI/Spinner';
 
 const StarWarsPeople = () => {
   const {setPeopleStore, setInitialPeople} = usePeopleStore((state: usePeoplesStoreState) => state)
+  const [page, setPage] = useState(1)
   const {data: peopleData, error: peopleError, status: peopleStatus } = useFetch({
-    queryRepo: SWConstants.PEOPLE,
-    apiCall: fetchPeople(),
+    queryRepo: `${SWConstants.PEOPLE}-page${page}`,
+    apiCall: fetchPeople(page),
     param: true
   });
   
@@ -29,13 +30,13 @@ const StarWarsPeople = () => {
       setPeopleStore(peopleData)
       setInitialPeople(peopleData)
     } 
-  }, [peopleStatus])
+  }, [peopleStatus, peopleData])
 
 return (
   <div className="starwars__container">
     <nav className="navigation">
       <PeopleSearchFilters />
-      <PeopleTablePaginate />
+      <PeopleTablePaginate setPage={setPage} />
     </nav>
     <Spinner loading={peopleStatus} />
     <PeopleTable />

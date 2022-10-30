@@ -1,8 +1,5 @@
 // library import
-import { useMemo } from "react"
-
-// crud import
-import { getPeople } from "../../crud/people.crud"
+import { Dispatch, useMemo } from "react"
 
 // component imports
 import {Button} from 'primereact/button'
@@ -12,7 +9,11 @@ import { Chip } from 'primereact/chip';
 import { usePeoplesStoreState, usePeopleStore } from "../../store/peopleStore"
 import { useFilterStore, useFilterStoreState } from "../../store/filterStore";
 
-const PeopleTablePaginate = () => {
+type PeopleTablePaginateProps = {
+  setPage: Dispatch<React.SetStateAction<number>>
+}
+
+const PeopleTablePaginate = ({setPage}: PeopleTablePaginateProps) => {
   const {peopleStore, setPeopleStore} = usePeopleStore((state: usePeoplesStoreState) => state)
   const {setResetFilterButton} = useFilterStore((state: useFilterStoreState) => state)
 
@@ -39,8 +40,7 @@ const PeopleTablePaginate = () => {
   const handleChangePage = async(direction: 'previousPage' |'nextPage') => {
     try {
       if (pageDirection[direction] !== null ){
-        const peopleUpdated =  await getPeople(Number(pageDirection[direction]))
-        setPeopleStore(peopleUpdated)
+        setPage(Number(pageDirection[direction]))
         setResetFilterButton(false)
       }
     } catch (err) {

@@ -23,7 +23,7 @@ const PeopleDetailDialog = ({isDialogVisible, setDialogVisible, selectedFilm, ha
       visible={isDialogVisible} 
       position="bottom" 
       modal 
-      style={{ width: '50vw' }}
+      style={{ width: '800px' }}
       onHide={() => {setDialogVisible(false)}}
       draggable={false} resizable={false}
     >

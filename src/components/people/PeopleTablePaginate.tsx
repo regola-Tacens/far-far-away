@@ -14,7 +14,7 @@ type PeopleTablePaginateProps = {
 }
 
 const PeopleTablePaginate = ({setPage}: PeopleTablePaginateProps) => {
-  const {peopleStore, setPeopleStore} = usePeopleStore((state: usePeoplesStoreState) => state)
+  const {peopleStore} = usePeopleStore((state: usePeoplesStoreState) => state)
   const {setResetFilterButton} = useFilterStore((state: useFilterStoreState) => state)
 
   const nextPage = useMemo(() => {

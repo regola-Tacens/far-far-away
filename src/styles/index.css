@@ -8,9 +8,9 @@
 }
 .starwars__container {
   margin-top: 1rem;
+  width: 800px;
 }
 .people__accordion {
-  width: 800px;
   margin-bottom: 6rem;
 }
 .peopledetail {

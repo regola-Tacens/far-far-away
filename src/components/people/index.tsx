@@ -39,7 +39,7 @@ return (
       <PeopleTablePaginate setPage={setPage} />
     </nav>
     <Spinner loading={peopleStatus} />
-    <PeopleTable />
+    {peopleStatus === "success" && <PeopleTable />}
   </div>
 )
 }

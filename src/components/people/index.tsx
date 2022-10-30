@@ -12,9 +12,9 @@ import useFetch from "../../hooks/useFetch";
 import { fetchPeople } from "../../crud/people.crud";
 
 // component imports
-import PeopleTable from './PeopleTable';
-import PeopleTablePaginate from './PeopleTablePaginate';
-import PeopleSearchFilters from './PeopleSearchFilters';
+import PeopleTable from './peopleTable/PeopleTable';
+import PeopleTablePaginate from './peopleTable/PeopleTablePaginate';
+import PeopleSearchFilters from './peopleTable/PeopleTableSearchFilters';
 import Spinner from '../UI/Spinner';
 
 const StarWarsPeople = () => {

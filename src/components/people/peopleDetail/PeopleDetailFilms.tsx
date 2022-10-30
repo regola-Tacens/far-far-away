@@ -3,14 +3,14 @@ import { Card } from 'primereact/card';
 import { Badge } from 'primereact/badge';
 
 // type imports
-import { PeopleType } from "../../types/peopleType"
+import { PeopleType } from "../../../types/peopleType"
 
 // component imports
-import Spinner from "../UI/Spinner"
+import Spinner from "../../UI/Spinner"
 
 // helpers & misc imports
-import { useGetFilmsByOnePeople } from "../../hooks/useFilms";
-import { useFilmStore, useFilmStoreState } from '../../store/filmStore';
+import { useGetFilmsByOnePeople } from "../../../hooks/useFilms";
+import { useFilmStore, useFilmStoreState } from '../../../store/filmStore';
 
 type PeopleDetailFilmsProps = {
   people: PeopleType,

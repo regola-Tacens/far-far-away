@@ -4,12 +4,12 @@ import { InputText } from "primereact/inputtext"
 import { useEffect, useState } from "react"
 
 // crud imports
-import { getPeopleByName } from "../../crud/people.crud"
+import { getPeopleByName } from "../../../crud/people.crud"
 
 // helpers & misc
-import useDebounce from "../../hooks/useDebounce"
-import { useFilterStore, useFilterStoreState } from "../../store/filterStore"
-import { usePeoplesStoreState, usePeopleStore } from "../../store/peopleStore"
+import useDebounce from "../../../hooks/useDebounce"
+import { useFilterStore, useFilterStoreState } from "../../../store/filterStore"
+import { usePeoplesStoreState, usePeopleStore } from "../../../store/peopleStore"
 
 const PeopleTableSearchInput = () => {
   const {setPeople, setPeopleStore, initialPeopleState} = usePeopleStore((state: usePeoplesStoreState) => state)

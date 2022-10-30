@@ -3,8 +3,8 @@ import { Badge } from "primereact/badge"
 import { Chip } from "primereact/chip"
 
 // store imports
-import { useFilterStore, useFilterStoreState } from "../../store/filterStore"
-import { usePeoplesStoreState, usePeopleStore } from "../../store/peopleStore"
+import { useFilterStore, useFilterStoreState } from "../../../store/filterStore"
+import { usePeoplesStoreState, usePeopleStore } from "../../../store/peopleStore"
 
 const PeopleSearchFilters = () => {
   const {peopleStore, setPeopleStore, initialPeopleState} = usePeopleStore((state: usePeoplesStoreState) => state)

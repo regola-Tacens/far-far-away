@@ -7,8 +7,8 @@ import { Chip } from 'primereact/chip';
 import PeopleTableSearchInput from "./PeopleTableSearchInput";
 
 // store imports
-import { usePeoplesStoreState, usePeopleStore } from "../../store/peopleStore"
-import { useFilterStore, useFilterStoreState } from "../../store/filterStore";
+import { usePeoplesStoreState, usePeopleStore } from "../../../store/peopleStore"
+import { useFilterStore, useFilterStoreState } from "../../../store/filterStore";
 
 type PeopleTablePaginateProps = {
   setPage: Dispatch<React.SetStateAction<number>>

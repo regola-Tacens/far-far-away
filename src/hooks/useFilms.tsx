@@ -9,7 +9,7 @@ import { useFilmStore, useFilmStoreState } from "../store/filmStore"
 import { FilmType } from "../types/filmsType"
 import { PeopleType } from "../types/peopleType"
 
-type Film = Pick<FilmType, 'title' | 'url'>
+export type Film = Pick<FilmType, 'title' | 'url' | 'opening_crawl'>
 
 export const useGetFilmsByOnePeople = (people: PeopleType ) => {
   const [error, setErrors] = useState<string>()
@@ -29,7 +29,8 @@ export const useGetFilmsByOnePeople = (people: PeopleType ) => {
           const result: Film = await fetchFilmById(film)
           filmsArray.push({
             title: result.title,
-            url: result.url
+            url: result.url,
+            opening_crawl: result.opening_crawl
           })
         }
         setFilmsByPeople(people.name, filmsArray)

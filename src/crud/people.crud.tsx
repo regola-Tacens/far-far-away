@@ -54,3 +54,12 @@ export async function getPeopleByFilm(filmId: number) {
     return Promise.reject(err)
   }
 }
+
+export async function getPeopleByName(name: string) {
+  try {
+    const response = await swapiAPI.get(`/people/?search=${name}`)
+    return Promise.resolve(response.data)
+  } catch (err) {
+    return Promise.reject(err)
+  }
+}

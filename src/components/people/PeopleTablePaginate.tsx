@@ -4,6 +4,7 @@ import { Dispatch, useMemo } from "react"
 // component imports
 import {Button} from 'primereact/button'
 import { Chip } from 'primereact/chip';
+import PeopleTableSearchInput from "./PeopleTableSearchInput";
 
 // store imports
 import { usePeoplesStoreState, usePeopleStore } from "../../store/peopleStore"
@@ -61,6 +62,7 @@ return (
       >
         previous
       </Button>
+      <PeopleTableSearchInput />
       <Button 
         className="peoplePaginate_previous"
         onClick={() => handleChangePage('nextPage')}

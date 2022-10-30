@@ -27,13 +27,13 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
   const {setFilterName, setResetFilterButton} = useFilterStore((state: useFilterStoreState) => state)
 
   const {data: planetData, error: planetError, status: planetStatus } = useFetch({
-    queryRepo: `${SWConstants.PLANETS}${people.name}`,
+    queryRepo: `${SWConstants.PLANETS}`,
     apiCall: fetchPlanetById(people.homeworld),
     param: !!people.homeworld
   });
 
   const {data: speciesData, error: speciesError, status: speciesStatus } = useFetch({
-    queryRepo: `${SWConstants.SPECIES}${people.name}`,
+    queryRepo: `${SWConstants.SPECIES}`,
     apiCall: fetchSpeciesById(people.species),
     param: people.species.length > 0
   });

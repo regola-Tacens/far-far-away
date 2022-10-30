@@ -3,13 +3,10 @@ import { useEffect, useState } from "react"
 
 // crud import
 import { fetchFilmById } from "../crud/film.crud"
-import { useFilmStore, useFilmStoreState } from "../store/filmStore"
+import { SelectedFilm, useFilmStore, useFilmStoreState } from "../store/filmStore"
 
 // type imports
-import { FilmType } from "../types/filmsType"
 import { PeopleType } from "../types/peopleType"
-
-export type Film = Pick<FilmType, 'title' | 'url' | 'opening_crawl'>
 
 export const useGetFilmsByOnePeople = (people: PeopleType ) => {
   const [error, setErrors] = useState<string>()
@@ -24,9 +21,9 @@ export const useGetFilmsByOnePeople = (people: PeopleType ) => {
   useEffect(() => {
     const getFilms = async() => {
       try {
-        let filmsArray: Film[] = []
+        let filmsArray: SelectedFilm[] = []
         for(let film of people.films) {
-          const result: Film = await fetchFilmById(film)
+          const result: SelectedFilm = await fetchFilmById(film)
           filmsArray.push({
             title: result.title,
             url: result.url,

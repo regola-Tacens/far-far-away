@@ -2,7 +2,7 @@
 import { Dispatch } from "react"
 
 // component imports
-import PeopleSearchFilters from "../people/peopleTable/PeopleTableSearchFilters"
+import PeopleSearchFilters from "./NavigationSearchFilters"
 import PeopleTableToolbar from "../people/peopleTable/peopleTableToolbar/PeopleTableToolbar"
 
 // image imports

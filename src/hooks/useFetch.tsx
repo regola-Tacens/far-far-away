@@ -13,7 +13,12 @@ const useFetch = ({queryRepo, apiCall, param}: useFetchProps) => {
     async() => await apiCall,
     {
       enabled: param,
-      retry: 1
+      retry: 1,
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnMount: false,
+      retryOnMount: false,
+      refetchOnWindowFocus: false
     }
   )
 }

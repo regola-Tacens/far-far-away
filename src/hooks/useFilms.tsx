@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 
 // crud import
 import { fetchFilmById } from "../crud/film.crud"
+import { useFilmStore, useFilmStoreState } from "../store/filmStore"
 
 // type imports
 import { FilmType } from "../types/filmsType"
@@ -11,8 +12,14 @@ import { PeopleType } from "../types/peopleType"
 type Film = Pick<FilmType, 'title' | 'url'>
 
 export const useGetFilmsByOnePeople = (people: PeopleType ) => {
-  const [films, setFilms] = useState<Film[]>([])
   const [error, setErrors] = useState<string>()
+  const {filmsByPeople, setFilmsByPeople} = useFilmStore((state: useFilmStoreState) => state)
+  const thisPeopleFilms = filmsByPeople.find(filmByOnePeople => filmByOnePeople.name === people.name)
+
+  const isObject = (obj: any) => {
+    return Object.prototype.toString.call(obj) === '[object Object]'
+  }
+  const isPeopleFilmAlreadyInStore = isObject(filmsByPeople.find(peoplefilm => peoplefilm.name === people.name))
 
   useEffect(() => {
     const getFilms = async() => {
@@ -25,13 +32,13 @@ export const useGetFilmsByOnePeople = (people: PeopleType ) => {
             url: result.url
           })
         }
-        setFilms(filmsArray)
+        setFilmsByPeople(people.name, filmsArray)
       } catch (err) {
         setErrors(JSON.stringify(err))
       }
     }
-    people && getFilms()
+    people && !isPeopleFilmAlreadyInStore && getFilms()
   }, [people])
 
-  return {films, error}
+  return {error, thisPeopleFilms}
 }

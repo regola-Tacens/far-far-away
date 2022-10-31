@@ -8,7 +8,7 @@ import { usePeoplesStoreState, usePeopleStore } from "../../store/peopleStore"
 
 const NavigationSearchFilters = () => {
   const {peopleStore, setPeopleStore, initialPeopleState} = usePeopleStore((state: usePeoplesStoreState) => state)
-  const {filterType, filterName, resetFilterButton, setResetFilterButton} = useFilterStore((state: useFilterStoreState) => state)
+  const {filterType, filterName, resetFilterButton, setResetFilterButton, setSearchValue} = useFilterStore((state: useFilterStoreState) => state)
 
   if (!resetFilterButton) return null
   const peopleQuantity = peopleStore?.results?.length
@@ -16,6 +16,7 @@ const NavigationSearchFilters = () => {
   const handleResetPeople = () => {
     setPeopleStore(initialPeopleState)
     setResetFilterButton(false)
+    setSearchValue('')
   }
 
   return (

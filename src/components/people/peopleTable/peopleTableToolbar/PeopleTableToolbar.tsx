@@ -16,7 +16,7 @@ type PeopleTablePaginateProps = {
 
 const PeopleTableToolbar = ({setPage}: PeopleTablePaginateProps) => {
   const {peopleStore} = usePeopleStore((state: usePeoplesStoreState) => state)
-  const {setResetFilterButton} = useFilterStore((state: useFilterStoreState) => state)
+  const {setResetFilterButton, setSearchValue} = useFilterStore((state: useFilterStoreState) => state)
 
   const nextPage = useMemo(() => {
     return peopleStore.next && peopleStore.next?.charAt(peopleStore.next.length - 1)
@@ -39,6 +39,7 @@ const PeopleTableToolbar = ({setPage}: PeopleTablePaginateProps) => {
   }
 
   const handleChangePage = async(direction: 'previousPage' |'nextPage') => {
+    setSearchValue('')
     try {
       if (pageDirection[direction] !== null ){
         setPage(Number(pageDirection[direction]))

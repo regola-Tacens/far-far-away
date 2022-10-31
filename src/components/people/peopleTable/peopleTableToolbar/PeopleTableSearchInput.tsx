@@ -1,7 +1,7 @@
 // library import
 import { Button } from "primereact/button"
 import { InputText } from "primereact/inputtext"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
 // crud imports
 import { getPeopleByName } from "../../../../crud/people.crud"
@@ -13,8 +13,7 @@ import { usePeoplesStoreState, usePeopleStore } from "../../../../store/peopleSt
 
 const PeopleTableSearchInput = () => {
   const {setPeople, setPeopleStore, initialPeopleState} = usePeopleStore((state: usePeoplesStoreState) => state)
-  const {setResetFilterButton} = useFilterStore((state: useFilterStoreState) => state)
-  const [searchValue, setSearchValue] = useState('')
+  const {setResetFilterButton, searchValue, setSearchValue} = useFilterStore((state: useFilterStoreState) => state)
   const debouncedSearchValue = useDebounce(searchValue, 1000)
 
   const handleCancelSearch = () => {

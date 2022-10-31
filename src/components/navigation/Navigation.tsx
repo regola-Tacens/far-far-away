@@ -15,12 +15,12 @@ type NavigationProps = {
 const Navigation = ({setPage}: NavigationProps ) => {
 return (
   <nav className="navigation">
-  <div className="navigation__image-container">
-    <img className="app__starwars-logo" src={SWLogo}/>
-  </div>
-  <PeopleSearchFilters />
-  <PeopleTableToolbar setPage={setPage} />
-</nav>
+    <div className="navigation__image-container">
+      <img className="app__starwars-logo" src={SWLogo}/>
+    </div>
+    <PeopleSearchFilters />
+    <PeopleTableToolbar setPage={setPage} />
+  </nav>
 )
 }
 

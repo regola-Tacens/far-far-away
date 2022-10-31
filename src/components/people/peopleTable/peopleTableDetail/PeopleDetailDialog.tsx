@@ -30,7 +30,7 @@ const PeopleDetailDialog = ({isDialogVisible, setDialogVisible, selectedFilm, ha
       <p className="p-m-0">{selectedFilm.opening_crawl}</p>
       <Button 
         onClick={handleFilterClick}
-        label="filter"
+        label="see all the actors"
         icon="pi pi-filter"
         iconPos="right"
       />

@@ -2,6 +2,7 @@
 import { Card } from 'primereact/card';
 import { Badge } from 'primereact/badge';
 import { useState } from 'react';
+import { motion } from "framer-motion";
 
 // type imports
 import { PeopleType } from "../../../../types/peopleType"
@@ -39,13 +40,15 @@ const PeopleDetailFilms = ({people, handleSearchByFilm}: PeopleDetailFilmsProps)
         {
           thisPeopleFilms && thisPeopleFilms.films.length > 0 ?
           thisPeopleFilms.films.map((film) => (
-            <div 
+            <motion.div 
+              whileHover={{x: 5}}
+              transition={{  stiffness: 400, damping: 10 }}
               className="poepledetail__films__film"
               key={film.title} 
               onClick={() => handleSelectFilm(film)}
             >
               <span>- {film.title}</span>
-            </div>
+            </motion.div>
           ))
           :
           <Spinner loading="loading" />

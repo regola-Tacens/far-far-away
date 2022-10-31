@@ -1,6 +1,7 @@
 // library imports
 import { Badge } from "primereact/badge"
 import { Chip } from "primereact/chip"
+import { motion } from "framer-motion";
 
 // store imports
 import { useFilterStore, useFilterStoreState } from "../../store/filterStore"
@@ -20,7 +21,17 @@ const NavigationSearchFilters = () => {
   }
 
   return (
-    <div className="search__filters" onClick={handleResetPeople}>
+    <motion.div 
+      className="search__filters" 
+      onClick={handleResetPeople}
+      initial={{x: -15}}
+      animate={{x: 0}}
+      transition={{ 
+        type: "spring",
+        stiffness: 400,
+        damping: 10
+      }}
+    >
       <Badge 
         className="search__filters__badge" 
         value={peopleQuantity} 
@@ -31,7 +42,7 @@ const NavigationSearchFilters = () => {
         label={`${filterType.toUpperCase()}:  ${filterName}`} 
         removable 
       />
-    </div>
+    </motion.div>
   )
 }
 

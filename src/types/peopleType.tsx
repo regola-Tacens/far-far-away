@@ -10,7 +10,7 @@ export type PeopleType = {
   skin_color: string,
   homeworld: string,
   films: string[],
-  species: [],
+  species: string[],
   starships: [],
   vehicles: [],
   url: string,

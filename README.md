@@ -8,4 +8,6 @@
 - ReactQuery
 - Primerreact
 - Zustand
+- zustand persist
+- framer motion
 - axios

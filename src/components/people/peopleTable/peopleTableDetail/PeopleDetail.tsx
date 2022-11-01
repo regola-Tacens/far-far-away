@@ -69,7 +69,7 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
 
   // ----------------- Search people of a given specie -------------------//
   const handleSearchBySpecies = async() => {
-    const searchInStore = peopleOfSameSpecie.find(el => el.specieUrl === people.species)
+    const searchInStore = peopleOfSameSpecie.find(el => el.specieUrl[0] === people.species[0])
     if(searchInStore) {
       setSearchResult(searchInStore.people, SWConstants.SPECIES, searchInStore.specieName)
       return

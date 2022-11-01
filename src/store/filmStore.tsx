@@ -1,4 +1,6 @@
 import create from 'zustand'
+//@ts-ignore
+import { devtools, persist, StoreApiWithPersist} from 'zustand/middleware'
 
 // types import
 import { FilmType } from '../types/filmsType'
@@ -22,26 +24,34 @@ export type useFilmStoreState = {
   }[]
 }
 
-export const useFilmStore = create<useFilmStoreState>((set) => ({
-  filmsByPeople: [],
-  peopleActingInFilms: [],
-  setFilmsByPeople: (name: string, films: Pick<FilmType, 'title' | 'url' | 'opening_crawl'>[]) => set((state) =>({
-    filmsByPeople: [
-      ...state.filmsByPeople,
-      {
-        name,
-        films
-      }
-    ],
-  })),
-  setPeopleActingInFilms: (filmUrl: string, filmTitle: string, people: PeopleType[]) => set((state) => ({
-    peopleActingInFilms : [
-      ...state.peopleActingInFilms,
-      {
-        filmUrl,
-        filmTitle,
-        people
-      }
-    ]
-  }))
-}))
+export const useFilmStore = create<useFilmStoreState, StoreApiWithPersist<useFilmStoreState>>(
+  persist(
+  (set) => ({
+    filmsByPeople: [],
+    peopleActingInFilms: [],
+    setFilmsByPeople: (name: string, films: Pick<FilmType, 'title' | 'url' | 'opening_crawl'>[]) => set((state) =>({
+      filmsByPeople: [
+        ...state.filmsByPeople,
+        {
+          name,
+          films
+        }
+      ],
+    })),
+    setPeopleActingInFilms: (filmUrl: string, filmTitle: string, people: PeopleType[]) => set((state) => ({
+      peopleActingInFilms : [
+        ...state.peopleActingInFilms,
+        {
+          filmUrl,
+          filmTitle,
+          people
+        }
+      ]
+    }))
+  }),
+  {
+    name: "films"
+  }
+  )
+
+)

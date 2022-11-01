@@ -17,7 +17,7 @@ export type usePlanetsStoreState = {
   setPeopleOfSamePlanet: (planetUrl: string, planetName: string, people: PeopleType[]) => void
 }
 
-export const usePlanetsStore = create<usePlanetsStoreState, StoreApiWithPersist<usePlanetsStoreState> >(
+export const usePlanetsStore = create<usePlanetsStoreState, StoreApiWithPersist<usePlanetsStoreState>>(
   persist(
     (set) => ({
       peopleOfSamePlanet: [],

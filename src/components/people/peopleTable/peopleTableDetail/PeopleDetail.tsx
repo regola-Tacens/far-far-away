@@ -4,6 +4,9 @@ import { PeopleType } from "../../../../types/peopleType"
 // store imports
 import { usePeoplesStoreState, usePeopleStore } from "../../../../store/peopleStore"
 import { useFilterStore, useFilterStoreState } from "../../../../store/filterStore"
+import { useFilmStore, useFilmStoreState } from "../../../../store/filmStore"
+import { useSpeciesStore, useSpeciesStoreState } from "../../../../store/speciesStore"
+import { usePlanetsStore, usePlanetsStoreState } from "../../../../store/planetStore"
 
 // component immports
 import PeopleDetailFilms from "./PeopleDetailFilms"
@@ -25,15 +28,18 @@ type PeopleDetailType = {
 const PeopleDetail = ({people}: PeopleDetailType) => {
   const {setPeople} = usePeopleStore((state: usePeoplesStoreState) => state)
   const {setFilterName, setResetFilterButton} = useFilterStore((state: useFilterStoreState) => state)
+  const {peopleActingInFilms, setPeopleActingInFilms} = useFilmStore((state: useFilmStoreState) => state)
+  const {setPeopleOfSameSpecies, peopleOfSameSpecie} = useSpeciesStore((state: useSpeciesStoreState) => state)
+  const {peopleOfSamePlanet, setPeopleOfSamePlanet} = usePlanetsStore((state: usePlanetsStoreState) => state)
 
   const {data: planetData, error: planetError, status: planetStatus } = useFetch({
-    queryRepo: `${SWConstants.PLANETS}`,
+    queryRepo: `${SWConstants.PLANETS}${people.name}`,
     apiCall: fetchPlanetById(people.homeworld),
     param: !!people.homeworld
   });
 
   const {data: speciesData, error: speciesError, status: speciesStatus } = useFetch({
-    queryRepo: `${SWConstants.SPECIES}`,
+    queryRepo: `${SWConstants.SPECIES}${people.name}`,
     apiCall: fetchSpeciesById(people.species),
     param: people.species.length > 0
   });
@@ -45,28 +51,49 @@ const PeopleDetail = ({people}: PeopleDetailType) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  // ----------------- Search people living on a given planet -------------------//
   const handleSearchByHomeworld = async() => {
+    const searchInStore = peopleOfSamePlanet.find(el => el.planetUrl === people.homeworld)
+    if(searchInStore) {
+      setSearchResult(searchInStore.people, SWConstants.PLANETS, searchInStore.planetName)
+      return
+    }
     try {
       const persons = await SearchByHomeworld(people.homeworld)
       setSearchResult(persons, SWConstants.PLANETS, planetData.name)
+      setPeopleOfSamePlanet(people.homeworld, planetData.name, persons)
     } catch (err) {
       console.error(err)
     }
   }
 
+  // ----------------- Search people of a given specie -------------------//
   const handleSearchBySpecies = async() => {
+    const searchInStore = peopleOfSameSpecie.find(el => el.specieUrl === people.species)
+    if(searchInStore) {
+      setSearchResult(searchInStore.people, SWConstants.SPECIES, searchInStore.specieName)
+      return
+    }
     try {
       const persons = await searchBySpecies(people.species)
       setSearchResult(persons, SWConstants.SPECIES, speciesData.name)
+      setPeopleOfSameSpecies(people.species, speciesData.name, persons)
     } catch (err) {
       console.error(err)
     }
   }
 
+  // ----------------- Search people acting in a given film -------------------//
   const handleSearchByFilm = async(film: string) => {
+    const searchInStore = peopleActingInFilms.find(el => el.filmUrl === film)
+    if(searchInStore) {
+      setSearchResult(searchInStore.people, SWConstants.FILM, searchInStore.filmTitle)
+      return
+    }
     try {
       const {persons, pickedFilm} = await searchByFilm(film)
       setSearchResult(persons, SWConstants.FILM, pickedFilm.title)
+      setPeopleActingInFilms(film, pickedFilm.title, persons)
     } catch (err) {
       console.error(err)
     }

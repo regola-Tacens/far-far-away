@@ -9,7 +9,7 @@ import PeopleDetail from './peopleTableDetail/PeopleDetail';
 
 const PeopleTable = () => {
   const {peopleStore, activeIndex} = usePeopleStore((state: usePeoplesStoreState) => state)
-  
+
   return (
     <div className="people__accordion">
        <Accordion activeIndex={activeIndex}>
